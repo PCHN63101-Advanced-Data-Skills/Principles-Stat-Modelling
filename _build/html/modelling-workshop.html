@@ -389,14 +389,17 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-as-variance-generators">Random Variables as Variance Generators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-random-variables-in-r">Creating Random Variables in <code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulties-of-the-sample-distribution">The Difficulties of the Sample Distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-get-the-distribution-wrong">What if we get the distribution wrong?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-outcome-example">Discrete Outcome Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-outcome-example">Continuous Outcome Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-random-variables">Scaling Random Variables</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-distributions-from-data">Determining Distributions from Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-choose-a-distribution">How Do We Choose a Distribution?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-get-the-distribution-wrong">What If We Get the Distribution Wrong?</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-functions-and-variance-functions">Mean Functions and Variance Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simultating-data">Simultating Data</a></li>
 </ul>
             </nav>
         </div>
@@ -414,8 +417,7 @@ document.write(`
 <p>At present, some of these ideas may feel a bit abstract. However, over the coming weeks we will start to see them put into action and all this information should become more concrete. In this workshop, the focus will be on providing more intuition about all these topics. In part, this will involve demonstrating some of these ideas in code so that you can play around with them, get a feel for them and see how the output changes with different inputs and arguments. In general, playing with code is one of the <em>best</em> ways for gaining intuition about more abstract mathematical concepts.</p>
 <section id="sources-of-variance">
 <h2>Sources of Variance<a class="headerlink" href="#sources-of-variance" title="Link to this heading">#</a></h2>
-<p>To begin, we will start with the basic concept of variance as the degree to which measured datapoints <em>differ</em> from each other. You should understand from the lesson one way in which we can capture this degree of variation, through the calculation of the sample variance. However, capturing variance is only ever a precursor to trying to <em>explain</em> variance.</p>
-<p>A core concept here is that data can vary for <em>two</em> reasons: systematic patterns, or random noise. Consider the code below and the resultant plots</p>
+<p>To begin, we will start with the basic concept of variance as the degree to which measured datapoints <em>differ</em> from each other. You should understand from the lesson one way in which we can capture this degree of variation, through the calculation of the sample variance. However, capturing variance is only ever a precursor to trying to <em>explain</em> variance. A core concept here is that data can vary for <em>two</em> reasons: systematic patterns, or random noise. Consider the code below and the resultant plots</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">666</span><span class="p">)</span>
@@ -437,21 +439,86 @@ document.write(`
 <a class="reference internal image-reference" href="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png"><img alt="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" src="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
-<p>The first plot contains random noise drawn from <span class="math notranslate nohighlight">\(\mathcal{N}\left(10,3\right)\)</span>, which is completely unrelated to the predictor variable <span class="math notranslate nohighlight">\(x\)</span>. The second plot contains a linear pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, with some random noise added. Both sets of data have nearly the same measurment of variance, yet the second one has a much clearer pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This pattern represents the <em>predictable</em> element of the data, whereas the additional random noise represents the <em>unpredictable</em> element of the data. The job of any statistical model is to take the total amount of variance in the data and try to <em>split it</em> into the amount attributable to any systematic and predictable patterns, and the amount attributable to random noise.</p>
+<p>The first plot contains random noise drawn from <span class="math notranslate nohighlight">\(\mathcal{N}\left(10,3\right)\)</span>, which is completely unrelated to the predictor variable <span class="math notranslate nohighlight">\(x\)</span>. The second plot contains a linear pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, with some random noise added. Both sets of data have nearly the same measurment of variance, yet the second one has a much clearer pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This highlights that variance in and of itself cannot tell us whether the variation is systematic or random. That is the job of the statistical model. Any patterns within the data are taken as the <em>predictable</em> elements, whereas the additional random noise represents the <em>unpredictable</em> elements. The job of any statistical model is to take the total amount of variance in the data and try to <em>split it</em> into the amount attributable to predictable patterns, and the amount attributable to random noise.</p>
 <div class="alert alert-block alert-info"> 
 <b>ACTIVITY</b> Imagine that the second plot above corresponds to an investigation into how mood, as measured using a questionnaire, improves based on the number of hours sleep someone gets the night before. If $y$ is mood and $x$ is hours of sleep, what does the systematic pattern in the data represent? What would you attribute this source of variance to? What about the noise? Why doesn't all the data perfectly adhere to the systematic pattern?
 </div><section id="reducible-and-irriducible-error">
 <h3>Reducible and Irriducible Error<a class="headerlink" href="#reducible-and-irriducible-error" title="Link to this heading">#</a></h3>
-<p>The idea of splitting variance into a <em>systematic</em> component and a <em>random noise</em> component relates to a key idea in statistics of <em>reducible</em> and <em>irriducible</em> error. For example, use the sleep and mood example, if we measured mood but had not captured hours of sleep, we would have no way of capturing the relationship we see above. The variance associated with this relationship would therefore get partitioned into the <em>random noise</em> component and the model error would be larger. However, if we include hours of sleep in our model, this relationship is captured, the <em>systematic</em> variance gets larger and the <em>random noise</em> gets smaller. We have therefore <em>reduced</em> the model error and so this is an example of <em>reducible</em> error. However, even with every measurement in the world we could never capture all the reasons why data varies, as there will always be some element that is just random noise. This is the <em>irreducible error</em>. We cannot get rid of it by making our model better and better because there will always be an element of real-world data that cannot be predicted.</p>
+<p>The idea of splitting variance into a <em>systematic</em> component and a <em>random noise</em> component relates to a key idea in statistics of <em>reducible</em> and <em>irriducible</em> error. For example, using the sleep and mood example, if we measured mood but had not measured hours of sleep, we would have no way of capturing the relationship we see above. The variance associated with this relationship would therefore get partitioned into the <em>random noise</em> component and the model error would be larger. However, if we include hours of sleep in our model, this relationship is captured, the <em>systematic</em> variance gets larger and the <em>random noise</em> gets smaller. We have therefore <em>reduced</em> the model error and so this is an example of <em>reducible</em> error. However, even with every measurement in the world we could never capture all the reasons why data varies, as there will always be some element that is just random noise. This is the <em>irreducible error</em>. We cannot get rid of it by making our model better and better because there will always be some element of real-world data that cannot be predicted. Our aim when building a statistical model is therefore to account for as much reducible error as possible, knowing that there will always be some amount of irreducible error.</p>
 </section>
 </section>
 <section id="random-variables-as-variance-generators">
 <h2>Random Variables as Variance Generators<a class="headerlink" href="#random-variables-as-variance-generators" title="Link to this heading">#</a></h2>
-<section id="creating-random-variables-in-r">
-<h3>Creating Random Variables in <code class="docutils literal notranslate"><span class="pre">R</span></code><a class="headerlink" href="#creating-random-variables-in-r" title="Link to this heading">#</a></h3>
+<p>When conceptualising our measurements as realisations of a random variable, we can think of the random variable as the <em>variance generator</em>. The variance in our data comes from the fact that the variable is random and can be captured by understanding the <em>shape</em> of its probability distribution. Of course, the probability distribution is a mathematical idealisation of the real world. So it is perhaps more accurate to say that the random variable is a <em>model</em> of the variance we observe in real data. The distribution is our proposed <em>data-generating process</em> in that it captures where the data came from. As such, understanding the nature of probability disributions is central to statistical modelling.</p>
+<section id="discrete-outcome-example">
+<h3>Discrete Outcome Example<a class="headerlink" href="#discrete-outcome-example" title="Link to this heading">#</a></h3>
+<p>Imagine an experiment where subjects are exposed to a series of very faint auditory stimuli. After each presentation, they are asked whether they heard anything or not. In total, each subject takes part in 20 trials, where the outcome variable is a count of the number of “yes” responses. This variable can be modelled as a <em>binomial random variate</em> of the form</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{B}\left(n,p\right).
+\]</div>
+<p>We already know that <span class="math notranslate nohighlight">\(n=20\)</span>, because each subject takes part in 20 trials. What would be unknown in reality would be the probability of giving a “yes” response. Let us say, for the purpose of illustration, that we know that the stimuli are around around 60% detectable, so <span class="math notranslate nohighlight">\(p=0.6\)</span>. Thus, our proposed data-generating process is</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{B}\left(20,0.6\right).
+\]</div>
+<p>Here, the variation in the count of “yes” responses across subjects is generated by the fact that this is a Binomial random variate drawn from a distribution with a <em>mean</em> and <em>variance</em>. These elements control both what the average count of “yes” responses is, as well as how variable this count will be on average. Thus, everything we need to know about this experiment is captured in the data-generating model above.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">R</span></code> to simulate data like this. For instance, we can generate 100 subjects from this experiment like so</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="m">0.6</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>11</li><li>15</li><li>11</li><li>9</li><li>10</li><li>13</li><li>13</li><li>11</li><li>14</li><li>11</li><li>14</li><li>14</li><li>14</li><li>15</li><li>10</li><li>13</li><li>13</li><li>9</li><li>14</li><li>13</li><li>16</li><li>14</li><li>15</li><li>12</li><li>14</li><li>11</li><li>13</li><li>14</li><li>13</li><li>12</li><li>13</li><li>14</li><li>11</li><li>14</li><li>13</li><li>16</li><li>13</li><li>13</li><li>12</li><li>11</li><li>11</li><li>7</li><li>14</li><li>8</li><li>12</li><li>9</li><li>7</li><li>11</li><li>13</li><li>12</li><li>14</li><li>13</li><li>13</li><li>16</li><li>16</li><li>7</li><li>11</li><li>12</li><li>11</li><li>13</li><li>12</li><li>11</li><li>13</li><li>14</li><li>13</li><li>9</li><li>16</li><li>12</li><li>9</li><li>9</li><li>10</li><li>13</li><li>9</li><li>10</li><li>9</li><li>13</li><li>12</li><li>13</li><li>14</li><li>11</li><li>10</li><li>12</li><li>14</li><li>13</li><li>17</li><li>13</li><li>13</li><li>13</li><li>10</li><li>12</li><li>12</li><li>9</li><li>15</li><li>11</li><li>13</li><li>11</li><li>12</li><li>11</li><li>10</li><li>10</li></ol>
+</div></div>
+</div>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Try running this code a few times. Do you get the same values? Is there any way to predict what those values will be? Think about what this represents in terms of running an experiment again and again with different subjects.
+</div><p>It should be clear that we have no way of predicting what any single response will be, nor how this will change from subject to subject. Thus, this variable is <em>unpredictable</em> in the short-term. This is the random noise component in action. However, in the <em>long-term</em> there is a pattern that we can use to make <em>general</em> predictions about the data. This is the systematic component in action.</p>
+<p>Both the <em>random noise component</em> and <em>systematic component</em> are described by different elements of the probability distribution. The random noise is captured by the <em>variance</em> and the systematic pattern is captured by the <em>expected value</em> (the <em>mean</em>). All probability distributions have some concept of both these elements. For the Binomial distribution, these are linked to the parameters in the following way</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{alignat*}{1}
+    E(y_{i})   &amp;= np \\
+    Var(y_{i}) &amp;= np(1-p)
+\end{alignat*}
+\end{split}\]</div>
+<p>Thus, we can say how many “yes” responses we expect on average and how variable those responses are expected to be from subject-to-subject on average.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Create a histogram of the data generated from the binomial distribution above. Try calculating the expected value and variance using the formulas above. Do they appear to agree with what you can see? Try calculating these directly from the data using the <code>mean()</code> and <code>var()</code> functions. Are they close to the values calculated directly from the parameters? What happens if you make the sample size very large (i.e. 10,000)?
+</div><p>… We conceptualise the effect of this as a shift in the probability of saying “yes”. In other words, the experimental manipulation has caused <span class="math notranslate nohighlight">\(p\)</span> to change.</p>
 </section>
-<section id="the-difficulties-of-the-sample-distribution">
-<h3>The Difficulties of the Sample Distribution<a class="headerlink" href="#the-difficulties-of-the-sample-distribution" title="Link to this heading">#</a></h3>
+<section id="continuous-outcome-example">
+<h3>Continuous Outcome Example<a class="headerlink" href="#continuous-outcome-example" title="Link to this heading">#</a></h3>
+</section>
+<section id="scaling-random-variables">
+<h3>Scaling Random Variables<a class="headerlink" href="#scaling-random-variables" title="Link to this heading">#</a></h3>
+<p>It is useful to get some sense of how transformations affect the probabilistic information…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="nf">scale</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fe2bbdc719ad27f3865ac5d5ef37adb6f96d9aacd405baee1ab3e56f61455724.png"><img alt="_images/fe2bbdc719ad27f3865ac5d5ef37adb6f96d9aacd405baee1ab3e56f61455724.png" src="_images/fe2bbdc719ad27f3865ac5d5ef37adb6f96d9aacd405baee1ab3e56f61455724.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/e3355e4099b3a52ffe8e5163ad0859e5cc5023c148185aeba9da31df75f06ccf.png"><img alt="_images/e3355e4099b3a52ffe8e5163ad0859e5cc5023c148185aeba9da31df75f06ccf.png" src="_images/e3355e4099b3a52ffe8e5163ad0859e5cc5023c148185aeba9da31df75f06ccf.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="determining-distributions-from-data">
+<h2>Determining Distributions from Data<a class="headerlink" href="#determining-distributions-from-data" title="Link to this heading">#</a></h2>
 <p>… As an example, the code below shows 9 examples of drawing data from a normal distribution and then plotting it. In this example, <span class="math notranslate nohighlight">\(n = 5\)</span>, which is a very small sample. Notice how difficult it is to assess the actual form of distribution from the sample, despite us knowing that each one was drawn from the same distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -474,13 +541,12 @@ document.write(`
 </div>
 <div class="alert alert-block alert-info"> 
 <b>ACTIVITY</b> Alter the code above for different values of <code>n</code>. At what sample size do you think assuming normality based on the shape of the sample distribution is reasonable? What does this suggest about how reliable it is to use the basic shape of the sample distribution to determine the population distribution? Now consider how variable the estimates are for the <i>mean</i> and <i>standard deviation</i>, as written in the title of each histogram. Remember, the true values are a mean of 5 and a standard deviation of 2. How does this variability change with different values of <code>n</code> and what does this suggest about our ability to accurately estimate the population parameters from a sample?
-</div></section>
-<section id="what-if-we-get-the-distribution-wrong">
-<h3>What if we get the distribution wrong?<a class="headerlink" href="#what-if-we-get-the-distribution-wrong" title="Link to this heading">#</a></h3>
-<p>… So, remembering the quote from George Box, we will <em>always</em> get the distribution “wrong” because the distribution is a <em>model</em> and no model is perfect. Our aim is then to choose something that is <em>as close as possible</em> such that the numbers produced by the model are useful.</p>
+</div><section id="how-do-we-choose-a-distribution">
+<h3>How Do We Choose a Distribution?<a class="headerlink" href="#how-do-we-choose-a-distribution" title="Link to this heading">#</a></h3>
 </section>
-<section id="scaling-random-variables">
-<h3>Scaling Random Variables<a class="headerlink" href="#scaling-random-variables" title="Link to this heading">#</a></h3>
+<section id="what-if-we-get-the-distribution-wrong">
+<h3>What If We Get the Distribution Wrong?<a class="headerlink" href="#what-if-we-get-the-distribution-wrong" title="Link to this heading">#</a></h3>
+<p>… So, remembering the quote from George Box, we will <em>always</em> get the distribution “wrong” because the distribution is a <em>model</em> and no model is perfect. Our aim is then to choose something that is <em>as close as possible</em> such that the numbers produced by the model are useful.</p>
 </section>
 </section>
 <section id="mean-functions-and-variance-functions">
@@ -532,17 +598,6 @@ document.write(`
 <div class="alert alert-block alert-danger">
 <b>IMPORTANT</b> The examples here all assume we know the values of the parameters. This is simply to illustrate how statistical models work. In reality, these values will be estimated from the data we have. So, when applied to real data, you can think of replacing the definition of the parameters values with question marks. This gives a <i>form</i> for the mean function and variance function, but these forms depend on values we do not know. The process of <i>fitting</i> or <i>estimating</i> a model is effectively using the data to <i>guess</i> what those values are. We can then replace the question marks with actual numbers.
 </div></section>
-<section id="simultating-data">
-<h2>Simultating Data<a class="headerlink" href="#simultating-data" title="Link to this heading">#</a></h2>
-<p>Given the information above, we now have everything we need to <em>simulate</em> data. Although our aim is not usually simulation, the process of generating simulated data is useful for a number of reasons:</p>
-<ol class="arabic simple">
-<li><p>The simulation makes the assumed data-generating process very explicit</p></li>
-<li><p>It allows us to see what sort of data our model would generates</p></li>
-<li><p>It allows us to simulate data that perfectly matches the assumptions of our models</p></li>
-<li><p>…</p></li>
-</ol>
-<p>Remember, when we have <em>real</em> data, our model is effectively suggesting a simplified version of the data-generating process. In other words, data simulated from the model and real data should be very close to each other. If they are not, then the model is inaccurate.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -596,14 +651,17 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-as-variance-generators">Random Variables as Variance Generators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-random-variables-in-r">Creating Random Variables in <code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulties-of-the-sample-distribution">The Difficulties of the Sample Distribution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-get-the-distribution-wrong">What if we get the distribution wrong?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-outcome-example">Discrete Outcome Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-outcome-example">Continuous Outcome Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-random-variables">Scaling Random Variables</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-distributions-from-data">Determining Distributions from Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-choose-a-distribution">How Do We Choose a Distribution?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-get-the-distribution-wrong">What If We Get the Distribution Wrong?</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-functions-and-variance-functions">Mean Functions and Variance Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simultating-data">Simultating Data</a></li>
 </ul>
   </nav></div>
 
