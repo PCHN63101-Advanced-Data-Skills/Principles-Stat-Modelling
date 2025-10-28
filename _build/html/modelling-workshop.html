@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +127,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,17 +157,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="The Principles of Statistical Modelling - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="The Principles of Statistical Modelling - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="The Principles of Statistical Modelling - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -186,14 +197,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -337,16 +343,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -370,15 +384,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-variance">More About Variance</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-scores"><span class="math notranslate nohighlight">\(z\)</span>-scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-variance">Sources of Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducible-and-irriducible-error">Reducible and Irriducible Error</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">Random Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-models">Statistical Models</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-as-the-data-generating-process">Distributions as the Data-generating Process</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulties-of-the-sample-distribution">The difficulties of the sample distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-as-variance-generators">Random Variables as Variance Generators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-random-variables-in-r">Creating Random Variables in <code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulties-of-the-sample-distribution">The Difficulties of the Sample Distribution</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-get-the-distribution-wrong">What if we get the distribution wrong?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-random-variables">Scaling Random Variables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-functions-and-variance-functions">Mean Functions and Variance Functions</a></li>
@@ -397,31 +411,53 @@
   <section class="tex2jax_ignore mathjax_ignore" id="pchn63101-workshop-1-statistical-modelling">
 <h1>PCHN63101 Workshop 1: Statistical Modelling<a class="headerlink" href="#pchn63101-workshop-1-statistical-modelling" title="Link to this heading">#</a></h1>
 <p>In the accompanying lesson to this workshop we explored the general concept of a statistical model as a method of capturing the variance inherent within a dataset. We first saw how to define a descriptive measure of variance, before exploring how this notion of random variation can be formalised using concepts from the world of <em>probability</em>. Specifically, every value we measure is conceptualised as a random draw from a particular probability distribution. This distribution provides the <em>model</em> of our data-generating process and thus formalises the probabilistic behaviour of our measurements. The shape of every probability distribution is controlled by a number of <em>parameters</em> that, either directly or indirectly, inform the <em>expected value</em> and <em>variance</em> of the distribution. These can be thoughts of as the <em>most probable</em> value and the <em>width</em>. A statistical model is then concerned with assuming some population distribution for a given data set and then connecting the parameters of the distribution to the data via a <em>mean function</em> and a <em>variance</em> function.</p>
-<p>In this workshop, we will aim to consolidate and enhance the understanding of all these key topics.</p>
-<section id="more-about-variance">
-<h2>More About Variance<a class="headerlink" href="#more-about-variance" title="Link to this heading">#</a></h2>
-<section id="z-scores">
-<h3><span class="math notranslate nohighlight">\(z\)</span>-scores<a class="headerlink" href="#z-scores" title="Link to this heading">#</a></h3>
-<p>A <span class="math notranslate nohighlight">\(z\)</span>-score can also be produced in R using the <code class="docutils literal notranslate"><span class="pre">scale()</span></code> function.</p>
+<p>At present, some of these ideas may feel a bit abstract. However, over the coming weeks we will start to see them put into action and all this information should become more concrete. In this workshop, the focus will be on providing more intuition about all these topics. In part, this will involve demonstrating some of these ideas in code so that you can play around with them, get a feel for them and see how the output changes with different inputs and arguments. In general, playing with code is one of the <em>best</em> ways for gaining intuition about more abstract mathematical concepts.</p>
+<section id="sources-of-variance">
+<h2>Sources of Variance<a class="headerlink" href="#sources-of-variance" title="Link to this heading">#</a></h2>
+<p>To begin, we will start with the basic concept of variance as the degree to which measured datapoints <em>differ</em> from each other. You should understand from the lesson one way in which we can capture this degree of variation, through the calculation of the sample variance. However, capturing variance is only ever a precursor to trying to <em>explain</em> variance.</p>
+<p>A core concept here is that data can vary for <em>two</em> reasons: systematic patterns, or random noise. Consider the code below and the resultant plots</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">666</span><span class="p">)</span>
+<span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="n">y1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">                 </span><span class="c1"># pure noise</span>
+<span class="n">y2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.9</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1.68</span><span class="p">)</span><span class="w"> </span><span class="c1"># linear pattern + pure noise</span>
+
+<span class="n">var1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="n">y1</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+<span class="n">var2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="n">y2</span><span class="p">),</span><span class="m">2</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variance=&quot;</span><span class="p">,</span><span class="n">var1</span><span class="p">))</span><span class="w"> </span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;variance=&quot;</span><span class="p">,</span><span class="n">var2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png"><img alt="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png" src="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png"><img alt="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" src="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>The first plot contains random noise drawn from <span class="math notranslate nohighlight">\(\mathcal{N}\left(10,3\right)\)</span>, which is completely unrelated to the predictor variable <span class="math notranslate nohighlight">\(x\)</span>. The second plot contains a linear pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, with some random noise added. Both sets of data have nearly the same measurment of variance, yet the second one has a much clearer pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This pattern represents the <em>predictable</em> element of the data, whereas the additional random noise represents the <em>unpredictable</em> element of the data. The job of any statistical model is to take the total amount of variance in the data and try to <em>split it</em> into the amount attributable to any systematic and predictable patterns, and the amount attributable to random noise.</p>
+<div class="alert alert-block alert-info"> 
+<b>ACTIVITY</b> Imagine that the second plot above corresponds to an investigation into how mood, as measured using a questionnaire, improves based on the number of hours sleep someone gets the night before. If $y$ is mood and $x$ is hours of sleep, what does the systematic pattern in the data represent? What would you attribute this source of variance to? What about the noise? Why doesn't all the data perfectly adhere to the systematic pattern?
+</div><section id="reducible-and-irriducible-error">
+<h3>Reducible and Irriducible Error<a class="headerlink" href="#reducible-and-irriducible-error" title="Link to this heading">#</a></h3>
+<p>The idea of splitting variance into a <em>systematic</em> component and a <em>random noise</em> component relates to a key idea in statistics of <em>reducible</em> and <em>irriducible</em> error. For example, use the sleep and mood example, if we measured mood but had not captured hours of sleep, we would have no way of capturing the relationship we see above. The variance associated with this relationship would therefore get partitioned into the <em>random noise</em> component and the model error would be larger. However, if we include hours of sleep in our model, this relationship is captured, the <em>systematic</em> variance gets larger and the <em>random noise</em> gets smaller. We have therefore <em>reduced</em> the model error and so this is an example of <em>reducible</em> error. However, even with every measurement in the world we could never capture all the reasons why data varies, as there will always be some element that is just random noise. This is the <em>irreducible error</em>. We cannot get rid of it by making our model better and better because there will always be an element of real-world data that cannot be predicted.</p>
 </section>
 </section>
-<section id="random-variables">
-<h2>Random Variables<a class="headerlink" href="#random-variables" title="Link to this heading">#</a></h2>
-</section>
-<section id="statistical-models">
-<h2>Statistical Models<a class="headerlink" href="#statistical-models" title="Link to this heading">#</a></h2>
-<section id="distributions-as-the-data-generating-process">
-<h3>Distributions as the Data-generating Process<a class="headerlink" href="#distributions-as-the-data-generating-process" title="Link to this heading">#</a></h3>
-<p>… So, if we have a set of data and we propose some distribution as the data-generating process, the most obvious question would be how <em>close</em> is this distribution to the data we have? In other words, what evidence is there to suggest that our proposed data-generating process is accurate?</p>
+<section id="random-variables-as-variance-generators">
+<h2>Random Variables as Variance Generators<a class="headerlink" href="#random-variables-as-variance-generators" title="Link to this heading">#</a></h2>
+<section id="creating-random-variables-in-r">
+<h3>Creating Random Variables in <code class="docutils literal notranslate"><span class="pre">R</span></code><a class="headerlink" href="#creating-random-variables-in-r" title="Link to this heading">#</a></h3>
 </section>
 <section id="the-difficulties-of-the-sample-distribution">
-<h3>The difficulties of the sample distribution<a class="headerlink" href="#the-difficulties-of-the-sample-distribution" title="Link to this heading">#</a></h3>
+<h3>The Difficulties of the Sample Distribution<a class="headerlink" href="#the-difficulties-of-the-sample-distribution" title="Link to this heading">#</a></h3>
 <p>… As an example, the code below shows 9 examples of drawing data from a normal distribution and then plotting it. In this example, <span class="math notranslate nohighlight">\(n = 5\)</span>, which is a very small sample. Notice how difficult it is to assess the actual form of distribution from the sample, despite us knowing that each one was drawn from the same distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
 <span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
 <span class="w">    </span><span class="n">y</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
 <span class="w">    </span><span class="n">mu</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="w">    </span><span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -437,11 +473,14 @@
 </div>
 </div>
 <div class="alert alert-block alert-info"> 
-<b>ACTIVITY</b> Alter the code above for different values of <code>n</code>. At what sample size do you think assuming normality from the sample distribution would be reasonable? What does this suggest about how reliable it is to use the sample distribution to determine the population distribution? Now consider how variable the estimates are for the <i>mean</i> and <i>standard deviation</i>. Remember, the true values are a mean of 5 and a standard deviation of 2. How does this variability change with different values of n and what does this suggest about our ability to accurately estimate the population parameters from a sample?
+<b>ACTIVITY</b> Alter the code above for different values of <code>n</code>. At what sample size do you think assuming normality based on the shape of the sample distribution is reasonable? What does this suggest about how reliable it is to use the basic shape of the sample distribution to determine the population distribution? Now consider how variable the estimates are for the <i>mean</i> and <i>standard deviation</i>, as written in the title of each histogram. Remember, the true values are a mean of 5 and a standard deviation of 2. How does this variability change with different values of <code>n</code> and what does this suggest about our ability to accurately estimate the population parameters from a sample?
 </div></section>
 <section id="what-if-we-get-the-distribution-wrong">
 <h3>What if we get the distribution wrong?<a class="headerlink" href="#what-if-we-get-the-distribution-wrong" title="Link to this heading">#</a></h3>
 <p>… So, remembering the quote from George Box, we will <em>always</em> get the distribution “wrong” because the distribution is a <em>model</em> and no model is perfect. Our aim is then to choose something that is <em>as close as possible</em> such that the numbers produced by the model are useful.</p>
+</section>
+<section id="scaling-random-variables">
+<h3>Scaling Random Variables<a class="headerlink" href="#scaling-random-variables" title="Link to this heading">#</a></h3>
 </section>
 </section>
 <section id="mean-functions-and-variance-functions">
@@ -449,14 +488,14 @@
 <p>… We can actually use R to define explicit functions for both the mean and variance. This can be helpful because it shows how the principles of the mathematical models translate into code. If you find code easier to understand, this can really help drive the point home.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(){</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(){</span>
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -475,16 +514,16 @@
 <p>As a final example, let us see how a simple regression model would be represented in this framework.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
 <span class="w">    </span><span class="n">beta.0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
 <span class="w">    </span><span class="n">beta.1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
 <span class="w">    </span><span class="n">mu</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">beta.1</span><span class="o">*</span><span class="n">x</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
 <span class="w">    </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -543,8 +582,7 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -553,15 +591,15 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-about-variance">More About Variance</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z-scores"><span class="math notranslate nohighlight">\(z\)</span>-scores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-of-variance">Sources of Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducible-and-irriducible-error">Reducible and Irriducible Error</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">Random Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-models">Statistical Models</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions-as-the-data-generating-process">Distributions as the Data-generating Process</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulties-of-the-sample-distribution">The difficulties of the sample distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-as-variance-generators">Random Variables as Variance Generators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-random-variables-in-r">Creating Random Variables in <code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulties-of-the-sample-distribution">The Difficulties of the Sample Distribution</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-we-get-the-distribution-wrong">What if we get the distribution wrong?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-random-variables">Scaling Random Variables</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-functions-and-variance-functions">Mean Functions and Variance Functions</a></li>
@@ -614,8 +652,8 @@ By Dr Martyn McFarquhar & Dr George Farmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
