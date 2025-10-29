@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>PCHN63101 Workshop 1: Statistical Modelling &#8212; The Principles of Statistical Modelling</title>
+    <title>PCHN63101 Statistical Modelling Workshop &#8212; The Principles of Statistical Modelling</title>
   
   
   
@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -39,11 +37,10 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +127,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,17 +157,21 @@
     
     
     <img src="_static/logo.png" class="logo__image only-light" alt="The Principles of Statistical Modelling - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="The Principles of Statistical Modelling - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="The Principles of Statistical Modelling - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -186,14 +197,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -337,16 +343,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -360,7 +374,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PCHN63101 Workshop 1: Statistical Modelling</h1>
+    <h1>PCHN63101 Statistical Modelling Workshop</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -398,8 +412,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pchn63101-workshop-1-statistical-modelling">
-<h1>PCHN63101 Workshop 1: Statistical Modelling<a class="headerlink" href="#pchn63101-workshop-1-statistical-modelling" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pchn63101-statistical-modelling-workshop">
+<h1>PCHN63101 Statistical Modelling Workshop<a class="headerlink" href="#pchn63101-statistical-modelling-workshop" title="Link to this heading">#</a></h1>
 <p>In the accompanying lesson to this workshop we explored the general concept of a statistical model as a method of capturing the variance inherent within a dataset. We first saw how to define a descriptive measure of variance, before exploring how this notion of random variation can be formalised using concepts from the world of <em>probability</em>. Specifically, every value we measure is conceptualised as a random draw from a particular probability distribution. This distribution provides the <em>model</em> of our data-generating process and thus formalises the probabilistic behaviour of our measurements. The shape of every probability distribution is controlled by a number of <em>parameters</em> that, either directly or indirectly, inform the <em>expected value</em> and <em>variance</em> of the distribution. These can be thoughts of as the <em>most probable</em> value and the <em>width</em>. A statistical model is then concerned with assuming some population distribution for a given data set and then connecting the parameters of the distribution to the data via a <em>mean function</em> and a <em>variance</em> function.</p>
 <p>At present, some of these ideas may feel a bit abstract. However, over the coming weeks we will start to see them put into action and all this information should become more concrete. In this workshop, the focus will be on providing more intuition about all these topics. In part, this will involve demonstrating some of these ideas in code so that you can play around with them, get a feel for them and see how the output changes with different inputs and arguments. In general, playing with code is one of the <em>best</em> ways for gaining intuition about more abstract mathematical concepts.</p>
 <section id="understanding-variance">
@@ -409,11 +423,11 @@
 \[
 \text{Var}\left(y\right) = \frac{\sum\left(y_{i} - \bar{y}\right)^{2}}{n-1}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(n\)</span> indicates the sample size, <span class="math notranslate nohighlight">\(\bar{y}\)</span> indicates the mean and the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> indicates a sum across all the data points (if you are unfamiliar with this notation, we will explain it in more detail in a future lesson). Although not the only conceivable way of capturing how much data differs, this is the formal definition of <em>variance</em> within statistics. We can see in the plots below that this value scales with our visual intuition about <em>variation</em>as the <em>spread</em> of values around 0.</p>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> indicates the sample size, <span class="math notranslate nohighlight">\(\bar{y}\)</span> indicates the mean and the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> indicates a sum across all the data points (if you are unfamiliar with this notation, we will explain it in more detail in a future lesson). Although not the only conceivable way of capturing how much data differs, this is the formal definition of <em>variance</em> within statistics. We can see in the plots below that this value scales with our visual intuition about <em>variation</em> as the <em>spread</em> of values around 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">){</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">){</span>
 <span class="w">   </span><span class="n">y</span><span class="w">      </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="m">5</span><span class="p">))</span>
 <span class="w">   </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="w">   </span><span class="nf">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;var=&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">sigma2</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
@@ -512,7 +526,44 @@ y_{i} \sim \mathcal{B}\left(20,0.6\right).
 <p>Thus, we can say how many “yes” responses we expect on average and how variable those responses are expected to be from subject-to-subject on average.</p>
 <div class="alert alert-block alert-info"> 
 <b>ACTIVITY</b> Create a histogram of the data generated from the binomial distribution above. Try calculating the expected value and variance using the formulas above. Do they appear to agree with what you can see? Try calculating these directly from the data using the <code>mean()</code> and <code>var()</code> functions. Are they close to the values calculated directly from the parameters? What happens if you make the sample size very large (i.e. 10,000)?
-</div><p>… We conceptualise the effect of this as a shift in the probability of saying “yes”. In other words, the experimental manipulation has caused <span class="math notranslate nohighlight">\(p\)</span> to change.</p>
+</div><p>Now imagine that we perform some sort of experimental manipulation. For instance, perhaps we get the subjects to listen to some very loud music for 5 minutes. We then get them to try and detect the same faint auditory stimuli as well. Assuming that this manipulation makes subjects <em>worse</em> at detecting the stimuli, we could conceptualise this as a shift in the probability of saying “yes”. In other words, the experimental manipulation has caused <span class="math notranslate nohighlight">\(p\)</span> to change. For instance, perhaps after listening to the loud music, <span class="math notranslate nohighlight">\(p = 0.3\)</span> and the data-generating process becomes</p>
+<div class="math notranslate nohighlight">
+\[
+y_{i} \sim \mathcal{B}\left(20,0.3\right).
+\]</div>
+<p>We can again use <code class="docutils literal notranslate"><span class="pre">R</span></code> to generate this type of data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>9</li><li>9</li><li>9</li><li>6</li><li>5</li><li>7</li><li>3</li><li>4</li><li>9</li><li>7</li><li>5</li><li>6</li><li>7</li><li>9</li><li>7</li><li>3</li><li>8</li><li>4</li><li>5</li><li>8</li><li>7</li><li>5</li><li>9</li><li>5</li><li>9</li><li>3</li><li>5</li><li>7</li><li>9</li><li>5</li><li>9</li><li>6</li><li>6</li><li>6</li><li>6</li><li>9</li><li>6</li><li>9</li><li>7</li><li>3</li><li>10</li><li>2</li><li>7</li><li>7</li><li>7</li><li>5</li><li>4</li><li>6</li><li>6</li><li>4</li><li>4</li><li>3</li><li>3</li><li>5</li><li>10</li><li>7</li><li>5</li><li>5</li><li>8</li><li>6</li><li>6</li><li>4</li><li>6</li><li>6</li><li>7</li><li>7</li><li>8</li><li>5</li><li>6</li><li>11</li><li>3</li><li>5</li><li>4</li><li>5</li><li>8</li><li>2</li><li>11</li><li>5</li><li>5</li><li>3</li><li>8</li><li>10</li><li>9</li><li>6</li><li>7</li><li>7</li><li>5</li><li>6</li><li>9</li><li>5</li><li>4</li><li>5</li><li>7</li><li>8</li><li>5</li><li>6</li><li>14</li><li>9</li><li>7</li><li>7</li></ol>
+</div></div>
+</div>
+<p>Much like before, we have no way of predicting any single response here. However, we can see a general pattern where the number of “yes” responses has been <em>reduced</em> compared to before. So, we can conceptualise our outcome variable and the effect of our experiment as a <em>shift</em> in the parameters of the distribution. We can see this in the histograms below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y.before</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="m">0.6</span><span class="p">)</span>
+<span class="n">y.after</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.before</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;Before music&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Number of YES responses&quot;</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">y.after</span><span class="p">,</span><span class="w">  </span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s">&quot;After music&quot;</span><span class="p">,</span><span class="w">  </span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;Number of YES responses&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e4d76aa7a4e8ba98b1321153896c449cbc8c604cd664860420f07dae215e3afe.png"><img alt="_images/e4d76aa7a4e8ba98b1321153896c449cbc8c604cd664860420f07dae215e3afe.png" src="_images/e4d76aa7a4e8ba98b1321153896c449cbc8c604cd664860420f07dae215e3afe.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/d74c93ecc16d3938bd229bb5882d9b8284558ca1330187cdb4cc36bb66dea891.png"><img alt="_images/d74c93ecc16d3938bd229bb5882d9b8284558ca1330187cdb4cc36bb66dea891.png" src="_images/d74c93ecc16d3938bd229bb5882d9b8284558ca1330187cdb4cc36bb66dea891.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>This example demonstrates a basic concept in statistics that our experimental manipulation <em>changes</em> the parameters of the distribution in some way. Usually, we conceptualise this as a change in <em>expected value</em>, but also sometimes in variance. Given that both the mean and variance of the binomial distribution involves the parameter <span class="math notranslate nohighlight">\(p\)</span>, any change to this value will affect <em>both</em> elements. In general, our statistical model aims to capture how the parameters of our proposed distribution change with some experimental manipulation, be that different conditions of a task, different clinical groups or how that change varies with some other continuous variable.</p>
 </section>
 <section id="continuous-outcome-example">
 <h3>Continuous Outcome Example<a class="headerlink" href="#continuous-outcome-example" title="Link to this heading">#</a></h3>
@@ -546,7 +597,7 @@ y_{i} \sim \mathcal{B}\left(20,0.6\right).
 
 <span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
 
-<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">){</span>
 <span class="w">    </span><span class="n">y</span><span class="w">            </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
 <span class="w">    </span><span class="n">sample.mu</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="w">    </span><span class="n">sample.sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -623,14 +674,14 @@ y_{i} \sim \mathcal{B}\left(20,0.6\right).
 <p>… We can actually use R to define explicit functions for both the mean and variance. This can be helpful because it shows how the principles of the mathematical models translate into code. If you find code easier to understand, this can really help drive the point home.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(){</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(){</span>
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(){</span>
 <span class="w">    </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -649,16 +700,16 @@ y_{i} \sim \mathcal{B}\left(20,0.6\right).
 <p>As a final example, let us see how a simple regression model would be represented in this framework.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
 <span class="w">    </span><span class="n">beta.0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
 <span class="w">    </span><span class="n">beta.1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
 <span class="w">    </span><span class="n">mu</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">beta.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">beta.1</span><span class="o">*</span><span class="n">x</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<span class="n">var.func</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
 <span class="w">    </span><span class="n">sigma2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
-<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">sigma2</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -712,8 +763,7 @@ y_{i} \sim \mathcal{B}\left(20,0.6\right).
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -787,8 +837,8 @@ By Dr Martyn McFarquhar & Dr George Farmer
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
