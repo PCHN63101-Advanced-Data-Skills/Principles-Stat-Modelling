@@ -430,7 +430,7 @@ document.write(`
 <p>To begin, we will start with the basic concept of variance as the degree to which measured data points <em>differ</em> from each other. You should understand from the lesson one way in which we can capture the degree of variation, through the calculation of the sample variance. The equation for the sample variance is</p>
 <div class="math notranslate nohighlight">
 \[
-\text{Var}\left(y\right) = \frac{\sum\left(y_{i} - \bar{y}\right)^{2}}{n-1}
+\text{Var}\left(y\right) = \frac{\sum\left(y - \bar{y}\right)^{2}}{n-1}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> indicates the sample size, <span class="math notranslate nohighlight">\(\bar{y}\)</span> indicates the mean and the symbol <span class="math notranslate nohighlight">\(\Sigma\)</span> indicates a sum across all the data points (we will explain this notation in more detail in a future lesson). Although not the only conceivable way of capturing how much data varies, this is the formal definition of <em>variance</em> within statistics. In the plots below, we can see how this value scales with our visual intuition about <em>variation</em> as the <em>spread of values around 0</em>.</p>
 <div class="cell docutils container">
@@ -446,10 +446,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/31f82d6fe77e47ec22041f584a7f885b43001553b277af8a36f5fb15b660fc5c.png"><img alt="_images/31f82d6fe77e47ec22041f584a7f885b43001553b277af8a36f5fb15b660fc5c.png" src="_images/31f82d6fe77e47ec22041f584a7f885b43001553b277af8a36f5fb15b660fc5c.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="_images/917bd9bab556eca3c2609ce2ce653305e49c1dd5323be272e040d47fa380f2ad.png"><img alt="_images/917bd9bab556eca3c2609ce2ce653305e49c1dd5323be272e040d47fa380f2ad.png" src="_images/917bd9bab556eca3c2609ce2ce653305e49c1dd5323be272e040d47fa380f2ad.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="_images/26b8ffae5eb6e61986e021ec501f529e0788f7604ec3ce9ce4a7ea621f39a65b.png"><img alt="_images/26b8ffae5eb6e61986e021ec501f529e0788f7604ec3ce9ce4a7ea621f39a65b.png" src="_images/26b8ffae5eb6e61986e021ec501f529e0788f7604ec3ce9ce4a7ea621f39a65b.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="_images/61aeb7248ad8cdbe93b035474a905b520756b4c1027d71c2c836c52b05a09fd9.png"><img alt="_images/61aeb7248ad8cdbe93b035474a905b520756b4c1027d71c2c836c52b05a09fd9.png" src="_images/61aeb7248ad8cdbe93b035474a905b520756b4c1027d71c2c836c52b05a09fd9.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/b08eca208aa926d67017d96cb5a8a03fd0ac759394afd39752339d3547b917f6.png"><img alt="_images/b08eca208aa926d67017d96cb5a8a03fd0ac759394afd39752339d3547b917f6.png" src="_images/b08eca208aa926d67017d96cb5a8a03fd0ac759394afd39752339d3547b917f6.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/f716f845637e326c872fe2f97d47e1cc3edb479f38baca97904f8e4af1d79d08.png"><img alt="_images/f716f845637e326c872fe2f97d47e1cc3edb479f38baca97904f8e4af1d79d08.png" src="_images/f716f845637e326c872fe2f97d47e1cc3edb479f38baca97904f8e4af1d79d08.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/c5f9df21deb8e796c80f9f96142db38e0dad03bea424129d4bdbd93dbe45dfa8.png"><img alt="_images/c5f9df21deb8e796c80f9f96142db38e0dad03bea424129d4bdbd93dbe45dfa8.png" src="_images/c5f9df21deb8e796c80f9f96142db38e0dad03bea424129d4bdbd93dbe45dfa8.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/b4740bfa6dd0c05878620bbf1849cfc706e662a7e91a4eaa50ef2502670f60f3.png"><img alt="_images/b4740bfa6dd0c05878620bbf1849cfc706e662a7e91a4eaa50ef2502670f60f3.png" src="_images/b4740bfa6dd0c05878620bbf1849cfc706e662a7e91a4eaa50ef2502670f60f3.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <div class="alert alert-block alert-info"> 
@@ -475,8 +475,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cdc877f22bf2d3c4e96410c8b9ba6eefc14d33a228de8350bd0921184bd8b568.png"><img alt="_images/cdc877f22bf2d3c4e96410c8b9ba6eefc14d33a228de8350bd0921184bd8b568.png" src="_images/cdc877f22bf2d3c4e96410c8b9ba6eefc14d33a228de8350bd0921184bd8b568.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="_images/1325f2bb20b058830e2d988d16f67dcb8027c52aca48cb3012e841a4f7d4faeb.png"><img alt="_images/1325f2bb20b058830e2d988d16f67dcb8027c52aca48cb3012e841a4f7d4faeb.png" src="_images/1325f2bb20b058830e2d988d16f67dcb8027c52aca48cb3012e841a4f7d4faeb.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png"><img alt="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png" src="_images/241cc6322ca9ed7211a9457ad2c8a0849892cba680d61e4a8b529a4ba87cf8fd.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png"><img alt="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" src="_images/66f933b3d028bb1307ee5984b56d8cd752b45428690ba647c9caac6c3e120c2f.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>The first plot contains random noise drawn from a normal distribution, completely unrelated to the predictor variable <span class="math notranslate nohighlight">\(x\)</span>. The second plot contains a linear pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, with some random normal noise added. Both sets of data have nearly the same value in terms of sample variance, yet the second plot shows a much clearer pattern between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This highlights that variance itself cannot tell us whether the variation is systematic or random. That is the job of the statistical model. Any clear patterns within the data represent the <em>predictable</em> element of the variance, whereas any additional random noise represents the <em>unpredictable</em> element of the variance. The job of any statistical model is therefore to take the total amount of variance and <em>partition</em> it into the amount attributable to predictable patterns and the amount attributable to random noise.</p>
@@ -515,7 +515,7 @@ y_{i} \sim \mathcal{B}\left(20,0.6\right).
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>13</li><li>13</li><li>9</li><li>10</li><li>11</li><li>11</li><li>12</li><li>13</li><li>8</li><li>8</li><li>9</li><li>10</li><li>9</li><li>13</li><li>12</li><li>13</li><li>11</li><li>12</li><li>11</li><li>13</li></ol>
+<ol class=list-inline><li>8</li><li>10</li><li>9</li><li>13</li><li>13</li><li>13</li><li>9</li><li>10</li><li>11</li><li>11</li><li>12</li><li>13</li><li>8</li><li>8</li><li>9</li><li>10</li><li>9</li><li>13</li><li>12</li><li>13</li></ol>
 </div></div>
 </div>
 <div class="alert alert-block alert-info"> 
@@ -556,7 +556,7 @@ y_{i} \sim \mathcal{N}\left(\mu, \sigma^{2}\right)
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>462.270942893207</li><li>536.561085263467</li><li>487.012547488837</li><li>536.071522128372</li><li>466.505680470052</li><li>467.77968942228</li><li>437.286792563753</li><li>510.892043084487</li><li>552.54129694987</li><li>423.508385609219</li><li>552.762800444598</li><li>503.174062360473</li><li>575.439082035084</li><li>508.934093806483</li><li>499.320396516873</li><li>494.044724348197</li><li>511.873333700596</li><li>486.697153614899</li><li>538.486630949932</li><li>542.279282437989</li></ol>
+<ol class=list-inline><li>514.456886611965</li><li>527.447660221446</li><li>525.33010480684</li><li>470.950411063117</li><li>462.270942893207</li><li>536.561085263467</li><li>487.012547488837</li><li>536.071522128372</li><li>466.505680470052</li><li>467.77968942228</li><li>437.286792563753</li><li>510.892043084487</li><li>552.54129694987</li><li>423.508385609219</li><li>552.762800444598</li><li>503.174062360473</li><li>575.439082035084</li><li>508.934093806483</li><li>499.320396516873</li><li>494.044724348197</li></ol>
 </div></div>
 </div>
 <div class="alert alert-block alert-info"> 
@@ -620,11 +620,11 @@ y_{i} \sim \mathcal{N}\left(\mu, \sigma^{2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/68e7304fb6c80a6fb12c88949ca522cda8aece296ee240c6a3220e46bf54ce95.png"><img alt="_images/68e7304fb6c80a6fb12c88949ca522cda8aece296ee240c6a3220e46bf54ce95.png" src="_images/68e7304fb6c80a6fb12c88949ca522cda8aece296ee240c6a3220e46bf54ce95.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/15927845e36b787bef9b1c7ec80473c03c4796d2f6e92908a29c20a7e31aa463.png"><img alt="_images/15927845e36b787bef9b1c7ec80473c03c4796d2f6e92908a29c20a7e31aa463.png" src="_images/15927845e36b787bef9b1c7ec80473c03c4796d2f6e92908a29c20a7e31aa463.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <div class="alert alert-block alert-info"> 
-<b>ACTIVITY</b> Alter the code above for different values of <code>n</code>. At what sample size do you think assuming normality based on the shape of the sample distribution is reasonable? What does this suggest about how reliable it is to use the basic shape of the sample distribution to determine the population distribution? Now consider how variable the estimates are for the <i>mean</i> and <i>standard deviation</i>, as written in the title of each histogram. Remember, the true values are a mean of 5 and a standard deviation of 2. How does this variability change with different values of <code>n</code> and what does this suggest about our ability to accurately estimate the population parameters from a sample?
+<b>ACTIVITY</b> Alter the code above for different values of <code>n</code>. At what sample size do you think assuming normality based on the shape of the sample distribution is reasonable? What does this suggest about how reliable it is to use the basic shape of the sample distribution to determine the population distribution? Now consider how variable the estimates are for the <i>mean</i> and <i>standard deviation</i>, as written in the title of each histogram. Remember, the true values are a mean of 5 and a standard deviation of 8. How does this variability change with different values of <code>n</code> and what does this suggest about our ability to accurately estimate the population parameters from a sample?
 </div><p>The point of this exercise is to highlight that we cannot be too fussy about how perfectly matched our data are to our proposed distribution. In many cases, it is very difficult to know because the variety of shapes we can get is quite large. It is common for students to be a bit obsessive over this, but hopefully this simulation highlights how our obsessiveness needs to scale with sample size. If we have <span class="math notranslate nohighlight">\(n = 10,000\)</span> and the distribution does not look normal, then we are allowed to be concerned. However, if <span class="math notranslate nohighlight">\(n = 6\)</span>, we have to realise that we are not always going to be able to tell. We will see later in the unit how this scaling is one of the reasons why inferential tests of distributional assumptions are usually a waste of time compared to simply <em>looking</em> at the distribution itself.</p>
 </section>
 <section id="what-if-we-are-wrong">
@@ -649,7 +649,7 @@ y_{i} \sim \mathcal{N}\left(\mu, \sigma^{2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3258fa240bbae106f420d141e8b808507063ff19ed7c38b72c4f0c25e8ba2721.png"><img alt="_images/3258fa240bbae106f420d141e8b808507063ff19ed7c38b72c4f0c25e8ba2721.png" src="_images/3258fa240bbae106f420d141e8b808507063ff19ed7c38b72c4f0c25e8ba2721.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/26cdeeeb131d2fcdd7909bc83aa10826ca7eb445feed2ae15db42aaba729c771.png"><img alt="_images/26cdeeeb131d2fcdd7909bc83aa10826ca7eb445feed2ae15db42aaba729c771.png" src="_images/26cdeeeb131d2fcdd7909bc83aa10826ca7eb445feed2ae15db42aaba729c771.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>So, what would happen if we decided to use a normal distribution instead of a binomial distribution as the model for this experiment? We would have a very similar <em>mean</em> and very similar <em>variance</em>, so in terms of the parameters of the distribution our conclusions would likely be the same. Indeed, the mean of the binomial is allowed to be a fractional value and thus is allowed to disagree with the discrete nature of the variable in question. So, from this perspective, there seems to be no harm done.</p>
@@ -725,7 +725,7 @@ y_{i} \sim \mathcal{N}\left(\mu, \sigma^{2}\right)
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>391.16843404928</li><li>485.98432905003</li><li>528.490444943919</li><li>496.289960256625</li><li>506.391399610843</li><li>407.779001381447</li><li>535.630020294607</li><li>332.394613039417</li><li>535.518810438031</li><li>488.888045767324</li><li>521.994870956868</li><li>485.588039954964</li><li>528.415820595733</li><li>553.76733827455</li><li>528.97230803588</li><li>504.710035382057</li><li>590.269852629511</li><li>513.093632782496</li><li>420.763445883332</li><li>526.132397603138</li></ol>
+<ol class=list-inline><li>453.997606284965</li><li>488.304661007992</li><li>580.347670663046</li><li>563.055029278193</li><li>492.885028023086</li><li>511.308177836916</li><li>455.967225644599</li><li>474.61512366723</li><li>548.624395566576</li><li>467.41092704098</li><li>572.388850046151</li><li>565.806540946643</li><li>516.101308523008</li><li>514.590867605263</li><li>391.16843404928</li><li>485.98432905003</li><li>528.490444943919</li><li>496.289960256625</li><li>506.391399610843</li><li>407.779001381447</li></ol>
 </div></div>
 </div>
 <p>So, this is now equivalent to the model</p>
@@ -788,7 +788,7 @@ y_{i} \sim \mathcal{N}\left(700,50\right).
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>534.935970528632</li><li>477.848703744127</li><li>495.585779500021</li><li>424.210752374723</li><li>529.286336225832</li><li>543.825573870409</li><li>461.272791280017</li><li>353.75137490918</li><li>700.632473369165</li><li>751.485651237609</li><li>648.719725238265</li><li>683.49775271318</li><li>683.102263747564</li><li>633.244165271337</li><li>640.754974611239</li><li>667.060731581706</li></ol>
+<ol class=list-inline><li>535.630020294607</li><li>332.394613039417</li><li>535.518810438031</li><li>488.888045767324</li><li>521.994870956868</li><li>485.588039954964</li><li>528.415820595733</li><li>553.76733827455</li><li>728.97230803588</li><li>704.710035382057</li><li>790.269852629511</li><li>713.093632782496</li><li>620.763445883332</li><li>726.132397603138</li><li>688.827413750251</li><li>607.905313535369</li></ol>
 </div></div>
 </div>
 <p>So now, based on the information passed in <code class="docutils literal notranslate"><span class="pre">x</span></code>, we have simulated data where the distribution <em>changes</em> depending upon the experimental condition. In this example, the first 8 values are from the No Music condition and the second 8 values are from the Music condition. So now, we have a data-generating model <em>that takes the experimental manipulation into account</em>.</p>
@@ -814,8 +814,8 @@ y_{i} \sim \mathcal{N}\left(700,50\right).
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/acf48b8d0ca2f1fee833f4df2b5d50ac32e379e6ae83c64e8a8ba93dc3ba1106.png"><img alt="_images/acf48b8d0ca2f1fee833f4df2b5d50ac32e379e6ae83c64e8a8ba93dc3ba1106.png" src="_images/acf48b8d0ca2f1fee833f4df2b5d50ac32e379e6ae83c64e8a8ba93dc3ba1106.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="_images/6a55179c86df6b259394666da2b32150fd204e761424e171b2f10f773fcc32bb.png"><img alt="_images/6a55179c86df6b259394666da2b32150fd204e761424e171b2f10f773fcc32bb.png" src="_images/6a55179c86df6b259394666da2b32150fd204e761424e171b2f10f773fcc32bb.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/5335240fd2248d0311379c140d08ac0ab61bce58601fc29eed01062290e5d9ce.png"><img alt="_images/5335240fd2248d0311379c140d08ac0ab61bce58601fc29eed01062290e5d9ce.png" src="_images/5335240fd2248d0311379c140d08ac0ab61bce58601fc29eed01062290e5d9ce.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/d2e2bc8796cff98ebbf95b966627ae218bc9ef27498a1842b0a128d3e19e6250.png"><img alt="_images/d2e2bc8796cff98ebbf95b966627ae218bc9ef27498a1842b0a128d3e19e6250.png" src="_images/d2e2bc8796cff98ebbf95b966627ae218bc9ef27498a1842b0a128d3e19e6250.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <div class="alert alert-block alert-danger"> 
@@ -884,7 +884,7 @@ y_{i} \sim \mathcal{N}\left(700,50\right).
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>17</li><li>10</li><li>8</li><li>13</li><li>10</li><li>12</li><li>8</li><li>13</li><li>11</li><li>13</li><li>11</li><li>10</li><li>11</li><li>9</li><li>15</li><li>10</li><li>12</li><li>12</li><li>11</li><li>9</li></ol>
+<ol class=list-inline><li>12</li><li>14</li><li>13</li><li>14</li><li>12</li><li>14</li><li>12</li><li>13</li><li>13</li><li>12</li><li>11</li><li>11</li><li>15</li><li>8</li><li>10</li><li>17</li><li>11</li><li>11</li><li>11</li><li>13</li></ol>
 </div></div>
 </div>
 <p>So, this is now equivalent to the model</p>
@@ -948,7 +948,7 @@ y_{i} \sim \mathcal{B}\left(20,0.3\right).
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>7</li><li>9</li><li>4</li><li>7</li><li>2</li><li>6</li><li>8</li><li>7</li><li>14</li><li>11</li><li>16</li><li>10</li><li>13</li><li>11</li><li>12</li><li>15</li></ol>
+<ol class=list-inline><li>9</li><li>8</li><li>7</li><li>3</li><li>8</li><li>8</li><li>6</li><li>9</li><li>12</li><li>12</li><li>11</li><li>11</li><li>11</li><li>12</li><li>11</li><li>9</li></ol>
 </div></div>
 </div>
 <p>So now, based on the information passed in <code class="docutils literal notranslate"><span class="pre">x</span></code>, we have simulated data where the distribution <em>changes</em> depending upon the experimental condition. In this example, the first 8 values are from the No Music condition and the second 8 values are from the Music condition. So now, we have a data-generating model using the binomial distribution <em>that takes the experimental manipulation into account</em>.</p>
@@ -975,8 +975,8 @@ y_{i} \sim \mathcal{B}\left(20,0.3\right).
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7e8db07fe8b56fe3d4361d11ff6158437841aeab1794940e8f7ac4327db6b812.png"><img alt="_images/7e8db07fe8b56fe3d4361d11ff6158437841aeab1794940e8f7ac4327db6b812.png" src="_images/7e8db07fe8b56fe3d4361d11ff6158437841aeab1794940e8f7ac4327db6b812.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="_images/cfa9176c903be8891137e6704b0cf6b2e7b1047f19be34446da838b0374cd28c.png"><img alt="_images/cfa9176c903be8891137e6704b0cf6b2e7b1047f19be34446da838b0374cd28c.png" src="_images/cfa9176c903be8891137e6704b0cf6b2e7b1047f19be34446da838b0374cd28c.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/7aff0abcad8b8d411c7c5d77f11527f75ac734ff1cabb0174edc30691833b43d.png"><img alt="_images/7aff0abcad8b8d411c7c5d77f11527f75ac734ff1cabb0174edc30691833b43d.png" src="_images/7aff0abcad8b8d411c7c5d77f11527f75ac734ff1cabb0174edc30691833b43d.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="_images/5adbe850e5ef19d0e845837b00d34af4a3ee20c5f6df1d06856df948a88cce0a.png"><img alt="_images/5adbe850e5ef19d0e845837b00d34af4a3ee20c5f6df1d06856df948a88cce0a.png" src="_images/5adbe850e5ef19d0e845837b00d34af4a3ee20c5f6df1d06856df948a88cce0a.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>Hopefully it is clear how, much like the normal distribution example, this experimental manipulation is conceptualised as a <em>change</em> in the parameters of the probability distribution.</p>
